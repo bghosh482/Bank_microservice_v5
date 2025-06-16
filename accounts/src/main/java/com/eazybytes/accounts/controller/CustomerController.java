@@ -19,12 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(
-        name = "REST API for Customers in EazyBank",
-        description = "REST APIs in EazyBank to FETCH customer details"
-)
+@Tag(name = "REST API for Customers in EazyBank", description = "REST APIs in EazyBank to FETCH customer details")
 @RestController
-@RequestMapping(path="/api", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
 public class CustomerController {
 
@@ -37,37 +34,14 @@ public class CustomerController {
     }
 
 
-    @Operation(
-            summary = "Fetch Customer Details REST API",
-            description = "REST API to fetch Customer details based on a mobile number"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
-    }
-    )
+    @Operation(summary = "Fetch Customer Details REST API", description = "REST API to fetch Customer details based on a mobile number")
+    @ApiResponses({@ApiResponse(responseCode = "200", description = "HTTP Status OK"), @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))})
 
     @GetMapping("/fetchCustomerDetails")
-    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(@RequestHeader("eazybank-correlation-id")
-            String correlationId,
-            @RequestParam
-                                                            @Pattern(regexp = "^[0-9]{10}$",
-                                                                    message = "Mobile number should be 10 digits")
-                                                                String mobileNumber) {
-        logger.debug("eazyBank-correlation-id found: {}",correlationId);
+    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(@RequestHeader("eazybank-correlation-id") String correlationId, @RequestParam @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number should be 10 digits") String mobileNumber) {
+        logger.debug("eazyBank-correlation-id found: {}", correlationId);
 
 
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(iCustomerService.fetchCustomerDetails(mobileNumber,correlationId));
+        return ResponseEntity.status(HttpStatus.OK).body(iCustomerService.fetchCustomerDetails(mobileNumber, correlationId));
     }
 }

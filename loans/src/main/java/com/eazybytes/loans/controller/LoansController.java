@@ -14,14 +14,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +41,7 @@ public class LoansController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoansController.class);
 
-    private ILoansService iLoansService;
+    private final ILoansService iLoansService;
 
     public LoansController(ILoansService iLoansService) {
         this.iLoansService = iLoansService;
@@ -108,9 +105,8 @@ public class LoansController {
     )
     @GetMapping("/fetch")
     public ResponseEntity<LoansDto> fetchLoanDetails(@RequestHeader("eazybank-correlation-id")
-                                                         String correlationId,
-
-            @RequestParam
+                                                            String correlationId,
+                                                     @RequestParam
                                                      @Pattern(regexp="(^$|[0-9]{10})",message = "Mobile number must be 10 digits")
                                                      String mobileNumber) {
         logger.debug("eazyBank-correlation-id found: {}",correlationId);
@@ -154,6 +150,11 @@ public class LoansController {
         }
     }
 
+    /**
+     * REST API to delete Loan details based on a mobile number
+     * @param mobileNumber The mobile number associated with the loan
+     * @return ResponseEntity containing the status of the operation
+     */
     @Operation(
             summary = "Delete Loan Details REST API",
             description = "REST API to delete Loan details based on a mobile number"
