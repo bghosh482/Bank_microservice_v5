@@ -1,1 +1,1 @@
-{"image":"bghosh482/gatewayserver:s10","imageId":"sha256:bdc3169f4aae0834bbf9ac0ae92e1e50c6a9e527ba7f6e9becdff92152b599db","imageDigest":"sha256:b8e6aef0b55e48cb77d47b3ce63794afb35d6a0d03a8d9834931f3644a10c80e","tags":["s10"],"imagePushed":false}
+{"image":"bghosh482/gatewayserver:s11","imageId":"sha256:1a5f22047423e99cc69f75ea3c657844a1be18fe4449c664c59d4f86a2f56b16","imageDigest":"sha256:1438597bbc8a3b8c3ec49af13d5f933560c9b4aefdaeb11fd50dbd916e9e310e","tags":["s11"],"imagePushed":false}
