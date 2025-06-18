@@ -76,6 +76,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-oauth2-jose</artifactId>
+		</dependency>
+
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -101,7 +116,7 @@
 				<version>3.4.5</version>
 				<configuration>
 					<to>
-						<image>bghosh482/${project.artifactId}:s11</image>
+						<image>bghosh482/${project.artifactId}:s12</image>
 					</to>
 				</configuration>
 			</plugin>
